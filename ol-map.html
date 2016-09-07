@@ -12,20 +12,19 @@ Use as:
 -->
 <dom-module id="ol-map">
 <style>
-	 :host {
+	:host {
       display: block;
     }
 
     #map
     {
-      position: absolute;
       height: 100%;
     }
 
 </style>
 	<template>
 		<div id='map' class="map"></div>
-		<content olmap=[[olmap]]></content>
+		<content></content>
 	</template>
 </dom-module>
 
@@ -39,7 +38,10 @@ Use as:
 		},
 		center: {
 			type: Object,
-			observer: '_centerChanged'
+			observer: '_centerChanged',
+			value: function(){
+				return [5,52];//default value
+			}
 		},
 	},
 	observers: [
@@ -56,7 +58,7 @@ Use as:
 			  ],
 			  target: self.$.map,
 			  view: new ol.View({
-				center: ol.proj.transform([5, 52], 'EPSG:4326', 'EPSG:3857'),
+				center: ol.proj.transform(self.center, 'EPSG:4326', 'EPSG:3857'),
 				zoom: 4
 			  })
 			});
