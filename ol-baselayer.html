@@ -32,10 +32,8 @@ Use as:
 		this.async(function(){
 			self.olmap = this.parentElement.olmap;
 			var layer = new ol.layer.Tile({
-			  source: new ol.source.Stamen({
-				layer: 'watercolor'
-			  })
-			});
+					source: new ol.source.OSM()
+            });
 			self.olmap.addLayer(layer);
 		});
     }
