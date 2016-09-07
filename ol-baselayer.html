@@ -12,14 +12,6 @@ Use as:
 
     @demo
 -->
-<dom-module id="ol-baselayer">
-<style>
-
-</style>
-	<template>
-		
-	</template>
-</dom-module>
 
 <script>
   Polymer({
@@ -40,10 +32,8 @@ Use as:
 		this.async(function(){
 			self.olmap = this.parentElement.olmap;
 			var layer = new ol.layer.Tile({
-			  source: new ol.source.Stamen({
-				layer: 'watercolor'
-			  })
-			});
+					source: new ol.source.OSM()
+            });
 			self.olmap.addLayer(layer);
 		});
     }

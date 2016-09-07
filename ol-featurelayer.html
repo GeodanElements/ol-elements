@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="http://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
+<script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
+    
+<!--
+This component will create a featurelayer in ol-map
+Use as:
+
+    <ol-map>
+    	<ol-featurelayer url='./url/to/data.json'></ol-featurelayer>
+    </ol-map>
+
+    @demo
+-->
+
+<script>
+  Polymer({
+    is: "ol-featurelayer",
+	properties: {
+		olmap: {
+			type: Object
+		},
+		layer: {
+			type: Object
+		},
+		features: {
+			type: Array,
+			observer: '_featuresChanged'
+		},
+		url: {
+			type: String,
+			observer: '_urlChanged'
+		}
+	},
+	observers: [
+	
+	],
+	_featuresChanged: function(){
+		
+	},
+	_urlChanged: function(){
+		
+	},
+	ready: function(){
+		
+	},
+	attached: function(){
+		var self = this;
+		var vector = new ol.layer.Vector({
+			source: new ol.source.Vector({
+				url: self.url,
+				format: new ol.format.GeoJSON()
+			})
+		});
+		this.layer = vector;
+		this.async(function(){
+			self.olmap = this.parentElement.olmap;
+			self.olmap.addLayer(vector);
+		});
+		
+    }
+  });
+</script>
+</dom-module>

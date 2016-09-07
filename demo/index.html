@@ -8,13 +8,24 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../ol-map.html">
     <link rel="import" href="../ol-baselayer.html">
+    <link rel="import" href="../ol-featurelayer.html">
   </head>
   <body>
-
+  <style>
+  #map {
+  	  height: 500px;
+  }
+  </style>
     <p>An example of <code>&lt;ol-map&gt;</code>:</p>
     <template id="t" is='dom-bind'>
-        <ol-map id='map'>
+        <ol-map id='map' center=[5,52]>
         	<ol-baselayer></ol-baselayer>
+        	<ol-featurelayer
+        		url='./data/countries.geojson'
+        	></ol-featurelayer>
+        	<ol-featurelayer
+        		url='./data/kronkelweg.geojson'
+        	></ol-featurelayer>
         </ol-map>
 
     </template>
@@ -22,6 +33,7 @@
     var t = document.querySelector('#t');
     t.addEventListener('dom-change', function() {
         var mapelement = document.querySelector('ol-map');
+        var featurelayer = document.querySelector('ol-featurelayer');
     });
     </script>
 
