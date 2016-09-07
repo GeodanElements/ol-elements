@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>ol-elements Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../ol-map.html">
+  </head>
+  <body>
+
+    <p>An example of <code>&lt;ol-map&gt;</code>:</p>
+    <template id="t" is='dom-bind'>
+        <ol-map id='map'></ol-map>
+
+    </template>
+    <script>
+    var t = document.querySelector('#t');
+    t.addEventListener('dom-change', function() {
+        var mapelement = document.querySelector('ol-map');
+    });
+    </script>
+
+  </body>
+</html>

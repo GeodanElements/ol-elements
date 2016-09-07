@@ -1,0 +1,66 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="http://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
+<script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
+    
+<!--
+This component will create an openlayers map
+Use as:
+
+    <ol-elment></ol-element>
+
+    @demo
+-->
+<dom-module id="ol-map">
+<style>
+	 :host {
+      display: block;
+    }
+
+    #map
+    {
+      position: absolute;
+      height: 100%;
+    }
+
+</style>
+	<template>
+		<div id='map' class="map"></div>
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "ol-map",
+	properties: {
+		
+	},
+	observers: [
+	
+	],
+	ready: function(){
+		
+	},
+	attached: function(){
+		var self = this;
+	  this.async(function()
+	  {
+		var map = new ol.Map({
+		  layers: [ //TODO: to be removed
+			new ol.layer.Tile({
+			  source: new ol.source.Stamen({
+				layer: 'watercolor'
+			  })
+			})
+		  ],
+		  target: self.$.map,
+		  view: new ol.View({
+			center: ol.proj.transform([5, 52], 'EPSG:4326', 'EPSG:3857'),
+			zoom: 4
+		  })
+		});
+	  });
+	},
+    
+  });
+</script>
+</dom-module>
