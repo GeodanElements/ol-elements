@@ -25,6 +25,7 @@ Use as:
 </style>
 	<template>
 		<div id='map' class="map"></div>
+		<content olmap=[[olmap]]></content>
 	</template>
 </dom-module>
 
@@ -32,7 +33,14 @@ Use as:
   Polymer({
     is: "ol-map",
 	properties: {
-		
+		olmap: {
+			type: Object,
+			notify: true
+		},
+		center: {
+			type: Object,
+			observer: '_centerChanged'
+		},
 	},
 	observers: [
 	
@@ -42,24 +50,18 @@ Use as:
 	},
 	attached: function(){
 		var self = this;
-	  this.async(function()
-	  {
-		var map = new ol.Map({
-		  layers: [ //TODO: to be removed
-			new ol.layer.Tile({
-			  source: new ol.source.Stamen({
-				layer: 'watercolor'
+		this.async(function(){
+			self.olmap = new ol.Map({
+			  layers: [
+			  ],
+			  target: self.$.map,
+			  view: new ol.View({
+				center: ol.proj.transform([5, 52], 'EPSG:4326', 'EPSG:3857'),
+				zoom: 4
 			  })
-			})
-		  ],
-		  target: self.$.map,
-		  view: new ol.View({
-			center: ol.proj.transform([5, 52], 'EPSG:4326', 'EPSG:3857'),
-			zoom: 4
-		  })
+			});
 		});
-	  });
-	},
+		},
     
   });
 </script>

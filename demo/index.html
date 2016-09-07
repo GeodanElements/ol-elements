@@ -7,12 +7,15 @@
     <title>ol-elements Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../ol-map.html">
+    <link rel="import" href="../ol-baselayer.html">
   </head>
   <body>
 
     <p>An example of <code>&lt;ol-map&gt;</code>:</p>
     <template id="t" is='dom-bind'>
-        <ol-map id='map'></ol-map>
+        <ol-map id='map'>
+        	<ol-baselayer></ol-baselayer>
+        </ol-map>
 
     </template>
     <script>
