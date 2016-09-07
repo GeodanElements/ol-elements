@@ -18,11 +18,14 @@
   </style>
     <p>An example of <code>&lt;ol-map&gt;</code>:</p>
     <template id="t" is='dom-bind'>
-        <ol-map id='map'>
+        <ol-map id='map' center=[5,52]>
+        	<ol-baselayer></ol-baselayer>
+        	<ol-featurelayer
+        		url='./data/countries.geojson'
+        	></ol-featurelayer>
         	<ol-featurelayer
         		url='./data/kronkelweg.geojson'
         	></ol-featurelayer>
-        	<ol-baselayer></ol-baselayer>
         </ol-map>
 
     </template>
@@ -31,7 +34,6 @@
     t.addEventListener('dom-change', function() {
         var mapelement = document.querySelector('ol-map');
         var featurelayer = document.querySelector('ol-featurelayer');
-        featurelayer.url = './data/kronkelweg.geojson';
     });
     </script>
 

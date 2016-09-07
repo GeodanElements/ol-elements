@@ -7,7 +7,7 @@ This component will create a featurelayer in ol-map
 Use as:
 
     <ol-map>
-    	<ol-featurelayer></ol-featurelayer>
+    	<ol-featurelayer url='./url/to/data.json'></ol-featurelayer>
     </ol-map>
 
     @demo
@@ -39,7 +39,7 @@ Use as:
 		
 	},
 	_urlChanged: function(){
-		debugger;
+		
 	},
 	ready: function(){
 		
@@ -48,7 +48,8 @@ Use as:
 		var self = this;
 		var vector = new ol.layer.Vector({
 			source: new ol.source.Vector({
-				url: self.url 
+				url: self.url,
+				format: new ol.format.GeoJSON()
 			})
 		});
 		this.layer = vector;

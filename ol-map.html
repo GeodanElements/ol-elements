@@ -38,17 +38,19 @@ Use as:
 		},
 		center: {
 			type: Object,
-			observer: '_centerChanged',
 			value: function(){
-				return [5,52];//default value
+				return [0,0];//default value
 			}
 		},
 	},
 	observers: [
-	
+		'_centerChanged(center, olmap)'
 	],
 	ready: function(){
 		
+	},
+	_centerChanged: function(center){
+		this.olmap.getView().setCenter(ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'));
 	},
 	attached: function(){
 		var self = this;
