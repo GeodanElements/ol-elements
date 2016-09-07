@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="http://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
+<script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+    
+<!--
+This component will create an d3 layer in ol-map with canvas
+Use as:
+
+    <ol-map>
+    	<ol-d3convaslayer></ol-d3canvaslayer>
+    </ol-map>
+
+    @demo
+-->
+
+<script>
+  Polymer({
+    is: "ol-d3layer",
+	properties: {
+		olmap: {
+			type: Object
+		},
+		data: {
+			type: Array
+		}
+	},
+	observers: [
+		'_dataChanged(data,olmap)'
+	],
+	ready: function(){
+		
+	},
+	_dataChanged: function(data,olmap){
+		
+	},
+	attached: function(){
+		var self = this;
+		var features = this.data;
+		var vector = new ol.layer.Vector({
+				
+		});
+		vector.afterAdd = function() {
+			debugger;
+			var div = d3.select("#"+vector.div.id);
+			div.selectAll("svg").remove();  // Prepare OpenLayers vector div to be the container for D3
+	
+			var svg = div.append("svg"),
+				g = svg.append("g");
+		};
+		this.async(function(){
+			self.olmap = this.parentElement.olmap;
+			self.olmap.addLayer(vector);
+		});
+    }
+  });
+</script>
+</dom-module>
