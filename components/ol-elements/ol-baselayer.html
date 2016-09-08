@@ -1,0 +1,42 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="https://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
+<script src="https://openlayers.org/en/v3.18.2/build/ol.js"></script>
+    
+<!--
+This component will create an baselayer in ol-map
+Use as:
+
+    <ol-map>
+    	<ol-baselayer></ol-baselayer>
+    </ol-map>
+
+    @demo
+-->
+
+<script>
+  Polymer({
+    is: "ol-baselayer",
+	properties: {
+		olmap: {
+			type: Object
+		}
+	},
+	observers: [
+	
+	],
+	ready: function(){
+		
+	},
+	attached: function(){
+		var self = this;
+		this.async(function(){
+			self.olmap = this.parentElement.olmap;
+			var layer = new ol.layer.Tile({
+					source: new ol.source.OSM()
+            });
+			self.olmap.addLayer(layer);
+		});
+    }
+  });
+</script>
+</dom-module>

@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>ol-elements Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../ol-map.html">
+    <link rel="import" href="../ol-baselayer.html">
+    <link rel="import" href="../ol-featurelayer.html">
+    <link rel="import" href="../ol-wmslayer.html">
+  </head>
+  <body>
+  <style>
+  #map {
+  	  height: 500px;
+  }
+  </style>
+    <p>An example of <code>&lt;ol-map&gt;</code>:</p>
+    <template id="t" is='dom-bind'>
+        <ol-map id='map' center=[5,52]>
+        	<ol-baselayer></ol-baselayer>
+        	<ol-featurelayer
+        		url='./data/countries.geojson'
+        	></ol-featurelayer>
+        	<ol-featurelayer
+        		url='./data/kronkelweg.geojson'
+        	></ol-featurelayer>
+			<ol-wmslayer></ol-wmslayer>
+        </ol-map>
+
+    </template>
+    <script>
+    var t = document.querySelector('#t');
+    t.addEventListener('dom-change', function() {
+        var mapelement = document.querySelector('ol-map');
+        var featurelayer = document.querySelector('ol-featurelayer');
+    });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="stylesheet" href="https://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
+<script src="https://openlayers.org/en/v3.18.2/build/ol.js"></script>
+    
+<!--
+This component will create an baselayer in ol-map
+Use as:
+
+    <ol-map>
+    	<ol-wmslayer></ol-wmslayer>
+    </ol-map>
+
+    @demo
+-->
+
+
+<dom-module id="ol-wmslayer">
+	<template>
+		<iron-ajax
+				auto
+				url="/config/wms.json"
+				params='{}'
+				handle-as="json"
+				on-response="gotConfig"
+				debounce-duration="300">
+		</iron-ajax>
+	</template>
+	<script>
+	  Polymer({
+		is: "ol-wmslayer",
+		properties: {
+			olmap: {
+				type: Object
+			},
+			url: {
+				type: String
+			},
+			layers: {
+				type: String
+			}
+		},
+		gotConfig: function(event, ironRequest) {
+			var self = this;
+			this.config = ironRequest.response;
+			this.async(function(){
+				self.olmap = this.parentElement.olmap;
+				var layer = new ol.layer.Tile({
+					source: new ol.source.TileWMS({
+						url: self.config.url,
+						params: {
+							'LAYERS': self.config.layers,
+							'VERSION': '1.1.1',
+							'FORMAT': 'image/png',
+							'TILED': true
+						}
+					})
+				});
+				self.olmap.addLayer(layer);
+			});
+		}
+	  });
+	</script>
+	</dom-module>
+</dom-module>

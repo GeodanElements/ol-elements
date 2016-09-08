@@ -1,0 +1,38 @@
+{
+  "name": "ol-elements",
+  "description": "Openlayers components in polymer",
+  "main": "index.html",
+  "authors": [
+    "Tom van Tilburg"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "polymer",
+    "webcomponents",
+    "openlayers",
+    "d3"
+  ],
+  "homepage": "https://github.com/GeodanElements/ol-elements",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "openlayers3": "^3.0.0",
+    "paper-elements": "^1.0.7",
+    "iron-elements": "^1.0.10"
+  },
+  "_release": "eb02c62927",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "eb02c62927ef6832ff6c2fbd6389a2f670a84106"
+  },
+  "_source": "git://github.com/GeodanElements/ol-elements.git",
+  "_target": "master",
+  "_originalSource": "GeodanElements/ol-elements",
+  "_direct": true
+}
