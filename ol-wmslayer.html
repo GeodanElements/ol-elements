@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="http://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
+<script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
+    
+<!--
+This component will create an baselayer in ol-map
+Use as:
+
+    <ol-map>
+    	<ol-wmslayer></ol-wmslayer>
+    </ol-map>
+
+    @demo
+-->
+
+<script>
+  Polymer({
+    is: "ol-wmslayer",
+	properties: {
+		olmap: {
+			type: Object
+		}
+	},
+	observers: [
+	
+	],
+	attached: function(){
+		var self = this;
+		this.async(function(){
+			self.olmap = this.parentElement.olmap;
+			var layer = new ol.layer.Tile({
+				source: new ol.source.TileWMS({
+					url: 'https://geodata.nationaalgeoregister.nl/brpgewaspercelen/wms?',
+					params: {
+						'LAYERS': 'brpgewaspercelen',
+						'VERSION': '1.1.1',
+						'FORMAT': 'image/png',
+						'TILED': true
+					}
+				})
+			});
+			self.olmap.addLayer(layer);
+		});
+    }
+  });
+</script>
+</dom-module>
