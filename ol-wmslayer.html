@@ -19,6 +19,12 @@ Use as:
 	properties: {
 		olmap: {
 			type: Object
+		},
+		url: {
+			type: String
+		},
+		layers: {
+			type: String
 		}
 	},
 	observers: [
@@ -30,9 +36,9 @@ Use as:
 			self.olmap = this.parentElement.olmap;
 			var layer = new ol.layer.Tile({
 				source: new ol.source.TileWMS({
-					url: 'https://geodata.nationaalgeoregister.nl/brpgewaspercelen/wms?',
+					url: self.url,
 					params: {
-						'LAYERS': 'brpgewaspercelen',
+						'LAYERS': self.layers,
 						'VERSION': '1.1.1',
 						'FORMAT': 'image/png',
 						'TILED': true
